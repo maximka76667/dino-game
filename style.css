@@ -36,7 +36,7 @@ body {
   --left: 0;
   position: absolute;
   width: 300%;
-  height: 30px;
+  height: 24px;
   background: url(./images/ground.png);
   bottom: 0;
   left: calc(var(--left) * 1%);
