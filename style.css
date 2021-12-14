@@ -52,3 +52,10 @@ body {
   background: url(./images/dino-run-0.png);
   background-size: cover;
 }
+
+.cactus {
+  position: absolute;
+  left: calc(var(--left) * 1%);
+  height: 94px;
+  bottom: 0;
+}
