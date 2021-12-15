@@ -9,7 +9,7 @@ body {
 
 .game {
   width: 100%;
-  height: 200px;
+  height: 300px;
   position: relative;
   user-select: none;
   overflow: hidden;
@@ -49,7 +49,7 @@ body {
   position: absolute;
   left: 30px;
   bottom: calc(var(--bottom) * 1%);
-  background: url(./images/dino-run-0.png);
+  background: url(./images/dino-stationary.png);
   background-size: cover;
 }
 

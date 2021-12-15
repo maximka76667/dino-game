@@ -17,7 +17,7 @@ function updateGround(delta, speedScale) {
     incrementCustomProperty(ground, '--left', delta * speedScale * SPEED * -1);
 
     if (getCustomProperty(ground, '--left') <= -300) {
-      setCustomProperty(ground, '--left', 300);
+      incrementCustomProperty(ground, '--left', 600);
     }
   })
 }
