@@ -16,6 +16,8 @@ function setupDino() {
   isJumping = false;
   dinoFrame = 0;
   currentFrameTime = 0;
+  velocity = 0;
+  setCustomProperty(dinoElement, '--bottom', 0);
   document.removeEventListener("keydown", onJump);
   document.addEventListener("keydown", onJump);
 }
