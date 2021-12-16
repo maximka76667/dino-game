@@ -1,4 +1,8 @@
-import { getCustomProperty, incrementCustomProperty, setCustomProperty } from "./updateCustomValues.js";
+import {
+  getCustomProperty,
+  incrementCustomProperty,
+  setCustomProperty
+} from "./updateCustomValues.js";
 
 const dinoElement = document.querySelector('[data-dino]');
 
@@ -61,7 +65,17 @@ function onJump(e) {
   isJumping = true;
 }
 
+function getDinoRects() {
+  return dinoElement.getBoundingClientRect();
+}
+
+function setDinoLose() {
+  dinoElement.background = "url(./images/dino-lose.png)"
+}
+
 export {
   setupDino,
-  updateDino
+  updateDino,
+  getDinoRects,
+  setDinoLose
 }

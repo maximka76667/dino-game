@@ -5,14 +5,22 @@ import {
 
 import {
   updateDino,
-  setupDino
+  setupDino,
+  getDinoRects,
+  setDinoLose
 } from './dino.js';
+
+import {
+  updateCactus,
+  setupCactus,
+  getCactusRects
+} from './cactus.js';
 
 // Game Scaling
 
 // const GAME_WIDTH = 100;
 // const GAME_HEIGHT = 30;
-let SPEED_SCALE_INCREASE = .00001;
+let SPEED_SCALE_INCREASE = .00002;
 
 const scoreElement = document.querySelector('[data-score]');
 const startElement = document.querySelector('[data-start]');
@@ -44,11 +52,12 @@ let score;
 
 function handleStart() {
   lastTime = null;
-  speedScale = 1;
+  speedScale = 1.5;
   score = 0;
   startElement.classList.add('start_hide');
   setupGround();
   setupDino();
+  setupCactus();
   window.requestAnimationFrame(update);
 }
 
@@ -61,8 +70,13 @@ function update(time) {
 
   updateGround(delta, speedScale);
   updateDino(delta, speedScale);
+  updateCactus(delta, speedScale);
   updateSpeedScale(delta);
   updateScore(delta);
+
+  if (checkLose()) {
+    return handleDeath();
+  }
 
   lastTime = time;
   window.requestAnimationFrame(update);
@@ -75,4 +89,25 @@ function updateSpeedScale(delta) {
 function updateScore(delta) {
   score += delta * .01;
   scoreElement.textContent = Math.floor(score);
+}
+
+function checkLose() {
+  const dinoRect = getDinoRects();
+  return getCactusRects().some(rect => isCollision(rect, dinoRect));
+}
+
+function isCollision(rect1, rect2) {
+  const isLeftCollision = rect1.left < rect2.right;
+  const isTopCollision = rect1.top < rect2.bottom;
+  const isRightCollision = rect1.right > rect2.left;
+  const isBottomCollision = rect1.bottom > rect1.top;
+  return isLeftCollision && isTopCollision && isRightCollision && isBottomCollision;
+}
+
+function handleDeath() {
+  setDinoLose();
+  setTimeout(() => {
+    document.addEventListener('keydown', handleStart, { once: true });
+    startElement.classList.remove('start_hide');
+  }, 100);
 }

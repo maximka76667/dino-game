@@ -54,8 +54,10 @@ body {
 }
 
 .cactus {
+  width: 34px;
   position: absolute;
   left: calc(var(--left) * 1%);
-  height: 94px;
+  height: 70px;
   bottom: 0;
+  background-repeat: no-repeat;
 }
