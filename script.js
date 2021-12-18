@@ -52,7 +52,7 @@ let score;
 
 function handleStart() {
   lastTime = null;
-  speedScale = 1.5;
+  speedScale = 1;
   score = 0;
   startElement.classList.add('start_hide');
   setupGround();
